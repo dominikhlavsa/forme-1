@@ -2,24 +2,60 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Naslov</title>
+    <title>Forme</title>
+    <link rel="stylesheet" type="text/css" href="forma.css">
 </head>
 <body>
-<h1>Prvi</h1>
+<h1>FORME</h1>
 
 <p>
 
-<form>
+<form method="post">
     Ime:<br>
     <input type="text" name="ime"><br>
     Prezime:<br>
     <input type="text" name="prezime"><br>
-    <input type="submit" value="Idu dani!">
+    <br><br>Spol:<br>
+    <input type="radio" name="spol" value="M"> Muško<br>
+    <input type="radio" name="spol" value="Ž"> Žensko<br>
+    <br><input type="submit" value="Pošalji!">
+
 </form>
 
 <?php
-echo('Vaše ime je: ' . htmlspecialchars($_GET['ime']) . '<br>');
-echo('Vaše prezime je: ' .$_GET['prezime']);
+
+if($_POST['spol'] == 'M')
+{
+    echo('<p.class = Muško>');
+}
+elseif ($_POST['spol'] == 'Ž')
+{
+    echo('<p.class = Žensko>');
+}
+
+echo('Vaše ime je: ' . htmlspecialchars($_POST['ime']) . '<br>');
+echo('Vaše prezime je: ' .htmlspecialchars($_POST['prezime']) . '<br>');
+echo('Vaš spol: ' .htmlspecialchars($_POST['spol']). '<br>');
+
+
+if($_POST['spol'] == 'M')
+
+{
+    echo('Vi ste pravi muškarac');
+
+
+}
+elseif ($_POST['spol'] == 'Ž')
+{
+    echo('Vi ste prava žena');
+}
+else
+{
+    echo('A šta si onda');
+}
+
+
+
 ?>
 
 </p>
