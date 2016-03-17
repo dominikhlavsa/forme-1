@@ -17,21 +17,38 @@
 
 <?php
 
-if ($result = $mysqli->query("SELECT  FROM  LIMIT 10")) {
+$conn->query("INSERT INTO students (name, surname) VALUES ('" . $_POST['ime'] ."','" . $_POST['prezime'] . "');");
+
+$result = $conn->query("SELECT * FROM students ORDER BY surname;");
+    if($result)
+    {
+        while ($row = $result->fetch_object())
+        {
+            //print_r($row);
+            echo('Ime: '. $row->name. '<br>');
+            echo('Prezime: '. $row->surname. '<br>');
+
+        }
+        $result->close();
+        $conn->next_result();
+    }
+
+/*if  ($result = $conn->query("SELECT*FROM students")) {
     printf("Select returned %d rows.\n", $result->num_rows);
     $result->close();
-}
+}*/
 
 if ($_POST['spol'] == 'M')
 {
     $class = 'musko';
 }
+
 elseif ($_POST['spol'] == 'Ž')
 {
     $class = 'zensko';
 }
 
-echo('Vaše ime je: ' . htmlspecialchars($_POST['ime']) . '<br>');
+echo('<br>'. 'Vaše ime je: ' . htmlspecialchars($_POST['ime']) . '<br>');
 echo('Vaše prezime je: ' .htmlspecialchars($_POST['prezime']) . '<br>');
 echo('Vaš spol: ' .htmlspecialchars($_POST['spol']). '<br>');
 
